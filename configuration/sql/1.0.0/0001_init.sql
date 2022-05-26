@@ -5,7 +5,7 @@ CREATE TABLE properties (
      profile     VARCHAR(200),
      label       VARCHAR(200),
      `key`         VARCHAR(200),
-     value       VARCHAR(200),
+     value       VARCHAR(800),
      primary key (application,profile,label, `key`)
 );
 insert into properties values
@@ -14,7 +14,8 @@ insert into properties values
 ('application','default','master','spring.jpa.hibernate.ddl-auto','validate'),
 ('application','default','master','spring.jpa.properties.hibernate.format_sql',true),
 ('application','default','master','spring.datasource.username',"root"),
-('application','default','master','spring.datasource.password',"Welcome1"),
+--comment ('application','default','master','spring.datasource.password',"Welcome1"),
+('application','default','master','spring.datasource.password',"{cipher}AgBGGd2aC86+DTdiQbNRpZ18eyH2W8Aa3k5pAdMBgTaVLCfe1OaUtMvOeWQWRB3OMBvuShRiObmkR9q8zmsdB83YQj/L+Jzmu2vpCLciSX3hLhxC4NyB8kVKNtnYTUfXS9RaKvNH6dChvCSJ/DpYBzeH4nBVm0ZoFTZ3KnD9OCIJqD9uzanFJKLtbHyzl0nJ3tDhulKW90C8OLcayIpLAd83RXBiIMHpKV7pyOAB6IuNm+b0Mf4XnYehxd8Ba1AyE6hyCKQwS44H7mmGdZa0wV83cCf+mPH5GnQ+SKELGBcZerO9d+E2bE8cU2aZf7NSQOI8MwPWjXCboiviYypWCliQM9dZKL9phovoOJPsKG6nYTX1DMkNbzl2zobYu/z7q2rcrtCzJq8OrfolcOAXIhe9FsJL4Gisv84kJP2UdNacjSWRotGRj3I8Mw6Y/7XzTZxmfmmeQTTCF8mZWIrmHUO2ZeKlQVKklfj5kLo9ngGfA8XI+0FfiTewaELdbY14XVNOaTWPWR5Yg2uYI63oAyLVi0NyT+tdOIGYRtJjS96Xo5ryBkOEFqDR4e3E/Y4aYYHqQtYhy2r8ymYxbcrz8osw3XRwpNmGKnwxGh4p15B7OHb39B1Z47F/KeQxZIju7ZcBVqDpBzKaQJeBPJXu6k2oKleCU3MSdqrRSi5NZ21gH1NS370IQ5LLZfxp6FrwpgogGBkxBc3U3i5XiCtDtp6L"),
 --comment ('application','default','master','spring.jpa.generate-ddl',true),
 --comment ('application','default','master','eventuatelocal.kafka.bootstrap.servers','localhost:9092'),
 --comment ('application','default','master','cdc.service.url','http://localhost:8099'),
