@@ -24,13 +24,26 @@ insert into properties values
 --comment ('application','default','master','management.endpoints.web.exposure.include','*'),
 ('application','default','master','management.endpoint.health.enabled',true),
 ('application','default','master','management.endpoint.info.enabled',true),
-('application','default','master','management.endpoints.enabled-by-default',true);
+('application','default','master','management.endpoints.enabled-by-default',true),
+('application','default','master','feign.client.config.default.connectTimeout',5000),
+('application','default','master','feign.client.config.default.readTimeout',5000),
+('application','default','master','feign.client.config.default.loggerLevel','basic'),
+--comment ('application','default','master','springdoc.swagger-ui.path','/swagger-ui.html'),
+('application','default','master','springdoc.remove-broken-reference-definitions',false);
+
 
 --changeset anhnt:2
 insert into properties values
 ('customer','default','master','spring.datasource.url',"jdbc:mysql://localhost:3306/customer?useUnicode=yes&characterEncoding=UTF-8&rewriteBatchedStatements=true&useSSL=false&requireSSL=false"),
 ('customer','default','master','server.port',8021),
 ('customer','default','master','server.servlet.contextPath','/customer'),
+('customer','default','master','feign.client.config.payment.url','http://localhost:8022/payment'),
+('customer','default','master','feign.client.config.payment.connectTimeout',5000),
+('customer','default','master','feign.client.config.payment.readTimeout',5000),
+('customer','default','master','feign.client.config.payment.loggerLevel','HEADERS'),
+('customer','default','master','logging.level.com.anhnt.customer.client','DEBUG'),
+('customer','default','master','feign.client.config.default.requestInterceptors','feign.auth.BasicAuthRequestInterceptor'),
+
 ('payment','default','master','spring.datasource.url',"jdbc:mysql://localhost:3306/payment?useUnicode=yes&characterEncoding=UTF-8&rewriteBatchedStatements=true&useSSL=false&requireSSL=false"),
 ('payment','default','master','server.port',8022),
 ('payment','default','master','server.servlet.contextPath','/payment'),

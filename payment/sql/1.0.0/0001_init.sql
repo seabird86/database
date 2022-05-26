@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset
+--changeset anhnt:1
 CREATE DATABASE IF NOT EXISTS payment CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE transaction (
