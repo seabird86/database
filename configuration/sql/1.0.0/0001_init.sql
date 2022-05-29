@@ -22,7 +22,7 @@ insert into properties values
 ('application','default','master','spring.cloud.bus.enabled',true),
 ('application','default','master','spring.cloud.bus.trace.enabled',true),
 ('application','default','master','management.endpoint.bus-refresh.enabled',true),
---comment ('application','default','master','management.endpoints.web.exposure.include','*'),
+('application','default','master','management.endpoints.web.exposure.include','*'),
 ('application','default','master','management.endpoint.health.enabled',true),
 ('application','default','master','management.endpoint.info.enabled',true),
 ('application','default','master','management.endpoints.enabled-by-default',true),
@@ -70,5 +70,9 @@ insert into properties values
 ('api-gateway','default','master','spring.cloud.gateway.routes[1].filters[0].args.regexp','/api-gateway/(?<remaining>.*)'),
 ('api-gateway','default','master','spring.cloud.gateway.routes[1].filters[0].args.replacement','/${remaining}'),
 ('api-gateway','default','master','spring.cloud.gateway.metrics.enabled',true),
-('api-gateway','default','master','management.endpoint.gateway.enabled',true)
-;
+('api-gateway','default','master','management.endpoint.gateway.enabled',true),
+('api-gateway','default','master','spring.cloud.gateway.default-filters[0].name','CacheRequestBody'),
+('api-gateway','default','master','spring.cloud.gateway.default-filters[0].args.bodyClass','java.lang.String'),
+('api-gateway','default','master','spring.cloud.gateway.default-filters[1].name','AddResponseHeader'),
+('api-gateway','default','master','spring.cloud.gateway.default-filters[1].args.name','X-Response-Default-Red'),
+('api-gateway','default','master','spring.cloud.gateway.default-filters[1].args.value','Blue');
