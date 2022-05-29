@@ -7,7 +7,16 @@ CREATE TABLE properties (
      `key`         VARCHAR(200),
      value       VARCHAR(800),
      primary key (application,profile,label, `key`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE message (
+  code varchar(9) NOT NULL,
+  message varchar(500) DEFAULT NULL,
+  message_fr varchar(500) DEFAULT NULL,
+  PRIMARY KEY (code)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 insert into properties values
 ('application','default','master','spring.jpa.show-sql',true),
 --comment ('application','default','master','spring.jpa.hibernate.ddl-auto','create'),
@@ -30,7 +39,11 @@ insert into properties values
 ('application','default','master','feign.client.config.default.readTimeout',5000),
 ('application','default','master','feign.client.config.default.loggerLevel','basic'),
 --comment ('application','default','master','springdoc.swagger-ui.path','/swagger-ui.html'),
-('application','default','master','springdoc.remove-broken-reference-definitions',false);
+('application','default','master','springdoc.remove-broken-reference-definitions',false),
+('application','default','master','feign.client.config.configuration.url','http://localhost:7000/configuration'),
+('application','default','master','feign.client.config.configuration.connectTimeout',5000),
+('application','default','master','feign.client.config.configuration.readTimeout',5000),
+('application','default','master','feign.client.config.configuration.loggerLevel','HEADERS');
 
 
 --changeset anhnt:2
@@ -38,12 +51,17 @@ insert into properties values
 ('customer','default','master','spring.datasource.url',"jdbc:mysql://localhost:3306/customer?useUnicode=yes&characterEncoding=UTF-8&rewriteBatchedStatements=true&useSSL=false&requireSSL=false"),
 ('customer','default','master','server.port',8021),
 ('customer','default','master','server.servlet.contextPath','/customer'),
+('customer','default','master','logging.level.com.anhnt.customer.client','DEBUG'),
 ('customer','default','master','feign.client.config.payment.url','http://localhost:8022/payment'),
 ('customer','default','master','feign.client.config.payment.connectTimeout',5000),
 ('customer','default','master','feign.client.config.payment.readTimeout',5000),
 ('customer','default','master','feign.client.config.payment.loggerLevel','HEADERS'),
-('customer','default','master','logging.level.com.anhnt.customer.client','DEBUG'),
-('customer','default','master','feign.client.config.default.requestInterceptors','feign.auth.BasicAuthRequestInterceptor'),
+
+
+--comment ('customer','default','master','feign.client.config.configuration.requestInterceptors','feign.auth.BasicAuthRequestInterceptor'),
+
+
+
 
 ('payment','default','master','spring.datasource.url',"jdbc:mysql://localhost:3306/payment?useUnicode=yes&characterEncoding=UTF-8&rewriteBatchedStatements=true&useSSL=false&requireSSL=false"),
 ('payment','default','master','server.port',8022),
@@ -76,3 +94,10 @@ insert into properties values
 ('api-gateway','default','master','spring.cloud.gateway.default-filters[1].name','AddResponseHeader'),
 ('api-gateway','default','master','spring.cloud.gateway.default-filters[1].args.name','X-Response-Default-Red'),
 ('api-gateway','default','master','spring.cloud.gateway.default-filters[1].args.value','Blue');
+
+insert into message values
+('AGW00001', 'Invalid Signature', '[FR]- Invalid Signature'),
+('AGW00002', 'Header [%s] is Required', '[FR] - Header [%s] is Required'),
+('AGW99999', 'Internal Server Error: %s', '[FR] - Internal Server Error: %s'),
+('CFG00001', 'Unauthorized', '[FR] - Unauthorized'),
+('CUS99999', 'Internal Server Error: %s', '[FR] - Internal Server Error: %s');
