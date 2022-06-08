@@ -43,7 +43,18 @@ insert into properties values
 ('application','default','master','feign.client.config.configuration.url','http://localhost:7000/configuration'),
 ('application','default','master','feign.client.config.configuration.connectTimeout',5000),
 ('application','default','master','feign.client.config.configuration.readTimeout',5000),
-('application','default','master','feign.client.config.configuration.loggerLevel','HEADERS');
+('application','default','master','feign.client.config.configuration.loggerLevel','HEADERS'),
+('application','default','master','spring.redis.sentinel.master','mymaster'),
+('application','default','master','spring.redis.password','password'),
+('application','default','master','spring.redis.sentinel.nodes','localhost:26379'),
+('application','default','master','spring.redis.database',0),
+('application','default','master','spring.redis.lettuce.pool.min-idle',2),
+('application','default','master','spring.redis.lettuce.pool.max-idle',4),
+('application','default','master','spring.redis.lettuce.pool.max-wait','300ms'),
+('application','default','master','spring.redis.lettuce.shutdown-timeout','500ms'),
+('application','default','master','spring.redis.lettuce.pool.max-active',8)
+
+;
 
 
 --changeset anhnt:2
@@ -93,11 +104,20 @@ insert into properties values
 ('api-gateway','default','master','spring.cloud.gateway.default-filters[0].args.bodyClass','java.lang.String'),
 ('api-gateway','default','master','spring.cloud.gateway.default-filters[1].name','AddResponseHeader'),
 ('api-gateway','default','master','spring.cloud.gateway.default-filters[1].args.name','X-Response-Default-Red'),
-('api-gateway','default','master','spring.cloud.gateway.default-filters[1].args.value','Blue');
+('api-gateway','default','master','spring.cloud.gateway.default-filters[1].args.value','Blue'),
+('api-gateway','default','master','app.clients[0].name','ANH'),
+('api-gateway','default','master','app.clients[0].rate-limiter.replenish-rate',10),
+('api-gateway','default','master','app.clients[0].rate-limiter.burst-capacity',100),
+('api-gateway','default','master','app.clients[0].rate-limiter.requested-tokens',50);
+
+
+
+
 
 insert into message values
 ('AGW00001', 'Invalid Signature', '[FR]- Invalid Signature'),
 ('AGW00002', 'Header [%s] is Required', '[FR] - Header [%s] is Required'),
 ('AGW99999', 'Internal Server Error: %s', '[FR] - Internal Server Error: %s'),
 ('CFG00001', 'Unauthorized', '[FR] - Unauthorized'),
-('CUS99999', 'Internal Server Error: %s', '[FR] - Internal Server Error: %s');
+('CUS99999', 'Internal Server Error: %s', '[FR] - Internal Server Error: %s'),
+('AGW00003', 'Too many request', '[FR] - Too many request');
