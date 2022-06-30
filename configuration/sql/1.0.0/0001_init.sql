@@ -78,6 +78,8 @@ insert into properties values
 ('payment','default','master','server.port',8022),
 ('payment','default','master','server.servlet.contextPath','/payment'),
 ('payment','default','master','logging.level.root','DEBUG'),
+('payment','default','master','spring.kafka.consumer.auto-offset-reset','earliest'),
+
 ('report','default','master','server.port',8023),
 ('report','default','master','server.servlet.contextPath','/report'),
 ('report','default','master','spring.datasource.url',"jdbc:mysql://localhost:3306/report?useUnicode=yes&characterEncoding=UTF-8&rewriteBatchedStatements=true&useSSL=false&requireSSL=false"),
@@ -111,13 +113,14 @@ insert into properties values
 ('api-gateway','default','master','app.clients[0].rate-limiter.requested-tokens',50);
 
 
-
-
-
 insert into message values
 ('AGW00001', 'Invalid Signature', '[FR]- Invalid Signature'),
 ('AGW00002', 'Header [%s] is Required', '[FR] - Header [%s] is Required'),
 ('AGW99999', 'Internal Server Error: %s', '[FR] - Internal Server Error: %s'),
 ('CFG00001', 'Unauthorized', '[FR] - Unauthorized'),
 ('CUS99999', 'Internal Server Error: %s', '[FR] - Internal Server Error: %s'),
-('AGW00003', 'Too many request', '[FR] - Too many request');
+('AGW00003', 'Too many request', '[FR] - Too many request'),
+('PMT00001', 'Invalid Payee', '[FR] - Invalid Payee'),
+('CUS00001', 'Balance must be positive', '[FR] - Balance must be positive'),
+('CUS00002', 'Username [%s] exists', '[FR] - Username [%s] exists'),
+('PMT00002','Balance must be greater than %s','[FR] - Balance must be greater than %s');

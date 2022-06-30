@@ -14,6 +14,7 @@ CREATE TABLE customer (
   version bigint(20) NOT NULL,
   created_datetime datetime NOT NULL,
   updated_datetime datetime NOT NULL,
-  PRIMARY KEY (id),
-  UNIQUE KEY username_UNIQUE (username)
+  balance decimal(20,6) DEFAULT NULL,
+  status VARCHAR(10) DEFAULT NULL,
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
